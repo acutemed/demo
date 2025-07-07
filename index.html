@@ -1,0 +1,1068 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Dialy-trauma in RRT: Interactive Case Study</title>
+
+        <!-- Figtree Font -->
+        <link
+            href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- Material Tailwind CSS -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/material-tailwind/2.1.4/material-tailwind.min.css"
+        />
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <!-- Material Tailwind JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/material-tailwind/2.1.4/material-tailwind.min.js"></script>
+
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        fontFamily: {
+                            figtree: ["Figtree", "sans-serif"],
+                        },
+                        colors: {
+                            "medical-blue": "#1e40af",
+                            "medical-blue-light": "#dbeafe",
+                            "medical-blue-dark": "#1e3a8a",
+                        },
+                    },
+                },
+            };
+        </script>
+
+        <style>
+            body {
+                font-family: "Figtree", sans-serif;
+            }
+
+            @keyframes slideInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(40px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+
+            .animate-slide-up {
+                animation: slideInUp 0.8s ease-out;
+            }
+
+            .animate-fade-in {
+                animation: fadeIn 0.6s ease-out;
+            }
+
+            .screen-transition {
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .btn-primary {
+                @apply bg-medical-blue hover:bg-medical-blue-dark text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1;
+            }
+
+            .btn-secondary {
+                @apply bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-3 px-6 rounded-lg transition-all duration-300;
+            }
+
+            .card-modern {
+                @apply bg-white rounded-xl shadow-lg border border-gray-100 p-6 transition-all duration-300 hover:shadow-xl;
+            }
+
+            .text-body {
+                @apply text-gray-700 leading-relaxed;
+            }
+
+            .text-heading {
+                @apply text-gray-900 font-semibold;
+            }
+        </style>
+    </head>
+    <body class="bg-gray-50 min-h-screen font-figtree">
+        <div id="app" class="container mx-auto px-4 py-6 max-w-5xl">
+            <!-- Progress Indicator -->
+            <div class="mb-8">
+                <div class="flex items-center justify-between mb-4">
+                    <h6
+                        class="text-sm font-medium text-gray-600 uppercase tracking-wider"
+                    >
+                        Learning Progress
+                    </h6>
+                    <span id="progressText" class="text-sm text-gray-500"
+                        >Step 1 of 4</span
+                    >
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div
+                        id="progressBar"
+                        class="bg-medical-blue h-2 rounded-full transition-all duration-500 ease-out"
+                        style="width: 25%"
+                    ></div>
+                </div>
+            </div>
+
+            <!-- Welcome Screen -->
+            <div id="welcomeScreen" class="screen-transition animate-slide-up">
+                <div class="text-center">
+                    <div class="card-modern max-w-4xl mx-auto">
+                        <div class="grid md:grid-cols-2 gap-8 items-center">
+                            <div class="text-left">
+                                <h1
+                                    class="text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight"
+                                >
+                                    Dialy-trauma in RRT
+                                </h1>
+                                <p class="text-xl text-gray-600 mb-6">
+                                    Interactive Clinical Case Study
+                                </p>
+                                <p class="text-body mb-8">
+                                    Master the complexities of dialysis-related
+                                    complications through an evidence-based
+                                    approach. Explore a challenging case of
+                                    septic shock with CRRT and learn expert
+                                    management strategies.
+                                </p>
+
+                                <div class="space-y-4">
+                                    <div
+                                        class="flex items-center text-gray-600"
+                                    >
+                                        <div
+                                            class="w-8 h-8 bg-medical-blue-light rounded-full flex items-center justify-center mr-3"
+                                        >
+                                            <span
+                                                class="text-medical-blue text-sm font-semibold"
+                                                >1</span
+                                            >
+                                        </div>
+                                        <span
+                                            >Pre-assessment questionnaire</span
+                                        >
+                                    </div>
+                                    <div
+                                        class="flex items-center text-gray-600"
+                                    >
+                                        <div
+                                            class="w-8 h-8 bg-medical-blue-light rounded-full flex items-center justify-center mr-3"
+                                        >
+                                            <span
+                                                class="text-medical-blue text-sm font-semibold"
+                                                >2</span
+                                            >
+                                        </div>
+                                        <span>Expert analysis & review</span>
+                                    </div>
+                                    <div
+                                        class="flex items-center text-gray-600"
+                                    >
+                                        <div
+                                            class="w-8 h-8 bg-medical-blue-light rounded-full flex items-center justify-center mr-3"
+                                        >
+                                            <span
+                                                class="text-medical-blue text-sm font-semibold"
+                                                >3</span
+                                            >
+                                        </div>
+                                        <span>Post-assessment & feedback</span>
+                                    </div>
+                                </div>
+
+                                <button
+                                    onclick="startPreTest()"
+                                    class="btn-primary mt-8 w-full md:w-auto"
+                                >
+                                    Start Learning Journey
+                                </button>
+                            </div>
+                            <div class="flex justify-center">
+                                <img
+                                    src="https://res.cloudinary.com/dn4n3lljr/image/upload/v1751923224/test/illustration.png"
+                                    alt="Medical Learning"
+                                    class="w-full max-w-md h-auto"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pre-test Screen -->
+            <div id="preTestScreen" class="screen-transition hidden">
+                <div class="card-modern">
+                    <div
+                        class="flex flex-col md:flex-row md:items-center md:justify-between mb-8"
+                    >
+                        <div>
+                            <h2 class="text-2xl font-bold text-heading mb-2">
+                                Pre-Assessment
+                            </h2>
+                            <p class="text-body">
+                                Test your current knowledge before reviewing
+                                expert insights
+                            </p>
+                        </div>
+                        <div class="mt-4 md:mt-0">
+                            <span
+                                id="questionCounter"
+                                class="bg-medical-blue-light text-medical-blue px-3 py-1 rounded-full text-sm font-medium"
+                            >
+                                Question 1 of 8
+                            </span>
+                        </div>
+                    </div>
+
+                    <div id="questionContainer" class="mb-8">
+                        <!-- Questions will be dynamically inserted here -->
+                    </div>
+
+                    <div
+                        class="flex flex-col md:flex-row md:justify-between gap-4"
+                    >
+                        <button
+                            id="prevBtn"
+                            onclick="prevQuestion()"
+                            class="btn-secondary order-2 md:order-1"
+                            disabled
+                        >
+                            ← Previous Question
+                        </button>
+                        <button
+                            id="nextBtn"
+                            onclick="nextQuestion()"
+                            class="btn-primary order-1 md:order-2"
+                        >
+                            Next Question →
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Expert Review Screen -->
+            <div id="expertScreen" class="screen-transition hidden">
+                <div class="card-modern">
+                    <div class="text-center mb-8">
+                        <div class="flex justify-center mb-4">
+                            <img
+                                src="https://res.cloudinary.com/dn4n3lljr/image/upload/v1751923369/test/illustration_1.png"
+                                alt="Medical Expert"
+                                class="w-64 h-auto"
+                            />
+                        </div>
+                        <h2 class="text-3xl font-bold text-heading mb-4">
+                            Expert Analysis & Review
+                        </h2>
+                        <p class="text-body max-w-2xl mx-auto">
+                            Comprehensive expert analysis of the clinical case
+                            with evidence-based recommendations and practical
+                            insights.
+                        </p>
+                    </div>
+
+                    <!-- Clinical Scenario -->
+                    <div
+                        class="bg-gradient-to-r from-medical-blue-light to-blue-50 rounded-xl p-6 mb-8"
+                    >
+                        <h3
+                            class="text-xl font-bold text-heading mb-4 flex items-center"
+                        >
+                            <span
+                                class="bg-medical-blue text-white rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3"
+                                >📋</span
+                            >
+                            Clinical Scenario
+                        </h3>
+                        <p class="text-body mb-4">
+                            A 55-year-old woman with severe community-acquired
+                            pneumonia complicated by septic shock is receiving
+                            CRRT at 25 mL/kg/h with regional citrate
+                            anticoagulation for 72 hours.
+                        </p>
+
+                        <div class="grid md:grid-cols-2 gap-4 mt-6">
+                            <div class="bg-white/80 rounded-lg p-4">
+                                <h4 class="font-semibold text-heading mb-2">
+                                    Laboratory Values
+                                </h4>
+                                <ul class="text-sm text-body space-y-1">
+                                    <li>• Serum phosphate: 1.8 mg/dL</li>
+                                    <li>• Mg²⁺: 1.4 mg/dL</li>
+                                    <li>
+                                        • CRP: 200 mg/L; IL-6 markedly elevated
+                                    </li>
+                                    <li>• Serum lactate: 2.8 mmol/L</li>
+                                    <li>• pH 7.55; HCO₃⁻: 34 mmol/L</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white/80 rounded-lg p-4">
+                                <h4 class="font-semibold text-heading mb-2">
+                                    Clinical Findings
+                                </h4>
+                                <ul class="text-sm text-body space-y-1">
+                                    <li>• Core temperature: 35.5°C</li>
+                                    <li>• Prealbumin: ↓30% from baseline</li>
+                                    <li>• Proximal muscle weakness</li>
+                                    <li>• TDM unavailable</li>
+                                    <li>• MAP ~65 mmHg on norepinephrine</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="expertContent" class="space-y-6">
+                        <!-- Expert content will be loaded here -->
+                    </div>
+
+                    <div class="text-center mt-8">
+                        <button onclick="startPostTest()" class="btn-primary">
+                            Proceed to Post-Assessment
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Post-test Screen -->
+            <div id="postTestScreen" class="screen-transition hidden">
+                <div class="card-modern">
+                    <div
+                        class="flex flex-col md:flex-row md:items-center md:justify-between mb-8"
+                    >
+                        <div>
+                            <h2 class="text-2xl font-bold text-heading mb-2">
+                                Post-Assessment
+                            </h2>
+                            <p class="text-body">
+                                Apply your new knowledge from the expert review
+                            </p>
+                        </div>
+                        <div class="mt-4 md:mt-0">
+                            <span
+                                id="postQuestionCounter"
+                                class="bg-medical-blue-light text-medical-blue px-3 py-1 rounded-full text-sm font-medium"
+                            >
+                                Question 1 of 8
+                            </span>
+                        </div>
+                    </div>
+
+                    <div id="postQuestionContainer" class="mb-8">
+                        <!-- Post-test questions will be dynamically inserted here -->
+                    </div>
+
+                    <div
+                        class="flex flex-col md:flex-row md:justify-between gap-4"
+                    >
+                        <button
+                            id="postPrevBtn"
+                            onclick="prevPostQuestion()"
+                            class="btn-secondary order-2 md:order-1"
+                            disabled
+                        >
+                            ← Previous Question
+                        </button>
+                        <button
+                            id="postNextBtn"
+                            onclick="nextPostQuestion()"
+                            class="btn-primary order-1 md:order-2"
+                        >
+                            Next Question →
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Screen -->
+            <div id="resultsScreen" class="screen-transition hidden">
+                <div class="card-modern text-center">
+                    <div class="flex justify-center mb-6">
+                        <img
+                            src="https://res.cloudinary.com/dn4n3lljr/image/upload/v1751923565/test/undraw_search_vimp.png"
+                            alt="Results"
+                            class="w-48 h-auto"
+                        />
+                    </div>
+
+                    <h2 class="text-3xl font-bold text-heading mb-6">
+                        Assessment Complete!
+                    </h2>
+
+                    <div id="resultsContent" class="mb-8">
+                        <!-- Results will be displayed here -->
+                    </div>
+
+                    <button onclick="restartJourney()" class="btn-primary">
+                        Start New Learning Journey
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Application state
+            let currentPhase = "welcome";
+            let currentQuestion = 0;
+            let preTestAnswers = {};
+            let postTestAnswers = {};
+
+            // Questions data
+            const questions = [
+                {
+                    id: 1,
+                    question:
+                        "Given hypophosphatemia and risk of diaphragmatic dysfunction, what is the optimal approach?",
+                    options: [
+                        "Phosphate-enriched dialysate for continuous balance",
+                        "Intermittent IV phosphate repletion only",
+                        "Wait and monitor serum levels",
+                        "Increase CRRT intensity",
+                    ],
+                    correct: 0,
+                    explanation:
+                        "Opt for phosphate-containing dialysate/replacement fluid early in CRRT to maintain continuous phosphate balance and prevent diaphragmatic dysfunction.",
+                },
+                {
+                    id: 2,
+                    question:
+                        "Without TDM for meropenem and vancomycin, which strategy ensures antimicrobial adequacy?",
+                    options: [
+                        "Standard bolus dosing every 8 hours",
+                        "Prolonged/continuous infusion after loading doses",
+                        "Empiric augmented loading regimens",
+                        "Rely solely on CRRT clearance",
+                    ],
+                    correct: 1,
+                    explanation:
+                        "Choose prolonged or continuous infusion after weight-based standard loading dose to optimize %fT>MIC for time-dependent antibiotics.",
+                },
+                {
+                    id: 3,
+                    question:
+                        "For persistent hypothermia at 35.5°C, what is the preferred approach?",
+                    options: [
+                        "Integrate in-line circuit heating immediately",
+                        "Intensify external warming measures",
+                        "Accept hypothermia without intervention",
+                        "Increase dialysate temperature",
+                    ],
+                    correct: 1,
+                    explanation:
+                        "Avoid in-line heating and instead intensify external warming measures. Mild hypothermia is tolerable if systemic perfusion is adequate.",
+                },
+                {
+                    id: 4,
+                    question:
+                        "Should you escalate effluent flow to 35 mL/kg/h for cytokine removal?",
+                    options: [
+                        "Yes, to enhance cytokine clearance",
+                        "No, continue current dose unless clear indication",
+                        "Increase gradually to 40 mL/kg/h",
+                        "Switch to high-flux dialysis",
+                    ],
+                    correct: 1,
+                    explanation:
+                        "Do not escalate effluent dose unless clear metabolic indication. Higher doses don't improve mortality but increase nutrient losses.",
+                },
+                {
+                    id: 5,
+                    question:
+                        "For the 30% drop in prealbumin, what nutrition strategy is optimal?",
+                    options: [
+                        "Start IV peptide infusions immediately",
+                        "Prioritize enteral protein delivery (2.0-2.5 g/kg/day)",
+                        "Provide standard nutrition support",
+                        "Focus on caloric intake only",
+                    ],
+                    correct: 1,
+                    explanation:
+                        "Prioritize enteral protein delivery, escalating to 2.0-2.5 g/kg/day if tolerated. Reserve IV amino acids for specific indications.",
+                },
+                {
+                    id: 6,
+                    question:
+                        "With stable hemodynamics, should you transition to SLED?",
+                    options: [
+                        "No, continue CRRT for renal recovery",
+                        "Yes, SLED is appropriate for stable patients",
+                        "Wait for complete vasopressor weaning",
+                        "Switch to intermittent hemodialysis",
+                    ],
+                    correct: 1,
+                    explanation:
+                        "Transitioning to SLED is appropriate and safe in hemodynamically stable patients with minimal vasopressor support.",
+                },
+                {
+                    id: 7,
+                    question:
+                        "Can SVV and PPV validly guide fluid removal during CRRT?",
+                    options: [
+                        "Yes, they remain accurate during CRRT",
+                        "No, use multimodal approach (PLR, echo, lung US)",
+                        "Only if mechanical ventilation is optimized",
+                        "Use central venous pressure instead",
+                    ],
+                    correct: 1,
+                    explanation:
+                        "SVV and PPV are unreliable in CRRT. Use multimodal approach with PLR, echocardiography, and lung ultrasound.",
+                },
+                {
+                    id: 8,
+                    question:
+                        "With metabolic alkalosis and escalating calcium needs, how should you adjust RCA?",
+                    options: [
+                        "Increase citrate concentration",
+                        "Reduce citrate rate or switch anticoagulation",
+                        "Add more calcium supplementation",
+                        "Continue current protocol",
+                    ],
+                    correct: 1,
+                    explanation:
+                        "This indicates citrate accumulation. Reduce citrate rate or switch to alternative anticoagulation if severe alkalosis persists.",
+                },
+            ];
+
+            // Expert content for each question
+            const expertContent = [
+                {
+                    title: "Q1: Phosphate Management in CRRT",
+                    content: `
+                    <div class="bg-blue-50 border-l-4 border-medical-blue p-4 mb-4">
+                        <h4 class="font-semibold text-heading mb-2">🧪 Clinical Dilemma</h4>
+                        <p class="text-body">The patient shows hypophosphatemia (1.8 mg/dL) after 72 hours of CRRT with proximal muscle weakness, suggesting early neuromuscular impact.</p>
+                    </div>
+                    
+                    <div class="bg-green-50 border-l-4 border-green-500 p-4 mb-4">
+                        <h4 class="font-semibold text-heading mb-2">✅ Expert Answer</h4>
+                        <p class="text-body mb-3">Opt for a phosphate-containing dialysate/replacement fluid early in CRRT to maintain continuous phosphate balance.</p>
+                        
+                        <div class="bg-white rounded-lg p-4 mb-3">
+                            <strong class="text-heading">Bedside tip:</strong> If your centre does not stock phosphate-enriched CRRT fluids, consider customising replacement fluids with added potassium or sodium phosphate under pharmacy guidance.
+                        </div>
+                        
+                        <h5 class="font-semibold text-heading mb-2">Why not IV boluses alone?</h5>
+                        <ul class="list-disc list-inside text-body mb-3 space-y-1">
+                            <li>Lead to peaks and troughs, risking under-correction or rebound hyperphosphatemia</li>
+                            <li>Require frequent monitoring and adjustments, especially in unstable ICU patients</li>
+                        </ul>
+                        
+                        <h5 class="font-semibold text-heading mb-2">Clinical Significance:</h5>
+                        <p class="text-body">Sustained low phosphate levels impair diaphragmatic contractility and ATP generation, clinically significant in ventilated patients. Timely correction prevents ventilator weaning failure.</p>
+                    </div>
+                `,
+                },
+                {
+                    title: "Q2: Antimicrobial Dosing in CRRT",
+                    content: `
+                    <div class="bg-blue-50 border-l-4 border-medical-blue p-4 mb-4">
+                        <h4 class="font-semibold text-heading mb-2">🦠 Clinical Dilemma</h4>
+                        <p class="text-body">CRRT is running, and you lack therapeutic drug monitoring (TDM) for meropenem and vancomycin. The patient is in septic shock with high IL-6 levels.</p>
+                    </div>
+                    
+                    <div class="bg-green-50 border-l-4 border-green-500 p-4 mb-4">
+                        <h4 class="font-semibold text-heading mb-2">✅ Expert Answer</h4>
+                        <p class="text-body mb-4">Choose prolonged or continuous infusion after a weight-based standard loading dose for time-dependent antibiotics.</p>
+                        
+                        <div class="grid md:grid-cols-2 gap-4 mb-4">
+                            <div class="bg-white rounded-lg p-4">
+                                <strong class="text-heading">Meropenem Protocol:</strong><br>
+                                <span class="text-body">2g IV over 3 hours every 8h OR continuous infusion 3-6g/day after 2g loading</span>
+                            </div>
+                            <div class="bg-white rounded-lg p-4">
+                                <strong class="text-heading">Vancomycin Protocol:</strong><br>
+                                <span class="text-body">25-30 mg/kg loading → continuous infusion 15-25 mg/kg/day</span>
+                            </div>
+                        </div>
+                        
+                        <h5 class="font-semibold text-heading mb-2">Why this works better:</h5>
+                        <ul class="list-disc list-inside text-body space-y-1">
+                            <li>CRRT increases clearance and drug volume of distribution</li>
+                            <li>Prolonged infusion stabilizes serum concentrations</li>
+                            <li>Improves tissue penetration during capillary leak</li>
+                        </ul>
+                    </div>
+                `,
+                },
+                {
+                    title: "Q3: Temperature Management in CRRT",
+                    content: `
+                    <div class="bg-blue-50 border-l-4 border-medical-blue p-4 mb-4">
+                        <h4 class="font-semibold text-heading mb-2">🌡️ Clinical Dilemma</h4>
+                        <p class="text-body">Patient is persistently hypothermic at 35.5°C despite external warming during ongoing CRRT.</p>
+                    </div>
+                    
+                    <div class="bg-green-50 border-l-4 border-green-500 p-4 mb-4">
+                        <h4 class="font-semibold text-heading mb-2">✅ Expert Answer</h4>
+                        <p class="text-body mb-4">Avoid in-line heating of CRRT fluids unless absolutely necessary. Instead, intensify external warming measures.</p>
+                        
+                        <div class="bg-white rounded-lg p-4 mb-4">
+                            <strong class="text-heading">Why not in-line heating?</strong><br>
+                            <span class="text-body">In-line heaters can promote protein denaturation, circuit clotting, and cytokine activation within the extracorporeal circuit.</span>
+                        </div>
+                        
+                        <h5 class="font-semibold text-heading mb-2">Mild hypothermia can be tolerated if patient has:</h5>
+                        <ul class="list-disc list-inside text-body mb-4 space-y-1">
+                            <li>Hemodynamic stability</li>
+                            <li>Adequate oxygen delivery (normal ScvO₂, lactate ≤2.5)</li>
+                            <li>No hypothermia-related arrhythmias or coagulopathy</li>
+                        </ul>
+                        
+                        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                            <strong class="text-heading">Practical Tip:</strong> Warming blanket + heated ambient room + warmed IV fluids ≈ sufficient in most ICU settings. In-line heating reserved for deep hypothermia (<34°C).
+                        </div>
+                    </div>
+                `,
+                },
+                {
+                    title: "Q4: CRRT Intensity and Cytokine Removal",
+                    content: `
+                    <div class="bg-blue-50 border-l-4 border-medical-blue p-4 mb-4">
+                        <h4 class="font-semibold text-heading mb-2">📈 Clinical Dilemma</h4>
+                        <p class="text-body">Despite 72 hours of CRRT, inflammatory markers remain elevated (CRP 200 mg/L, IL-6 high). Temptation to increase effluent dose from 25 to 35 mL/kg/h.</p>
+                    </div>
+                    
+                    <div class="bg-green-50 border-l-4 border-green-500 p-4 mb-4">
+                        <h4 class="font-semibold text-heading mb-2">✅ Expert Answer</h4>
+                        <p class="text-body mb-4">Do not escalate the effluent dose unless there's a clear metabolic indication. Increasing CRRT intensity above 25 mL/kg/h does not improve mortality.</p>
+                        
+                        <div class="bg-white rounded-lg p-4 mb-4">
+                            <strong class="text-heading">Evidence:</strong> The RENAL Trial and VA/NIH ATN Trial found no benefit in high-dose CRRT (>35 mL/kg/h) in sepsis or AKI outcomes.
+                        </div>
+                        
+                        <h5 class="font-semibold text-heading mb-2">Why cytokine clearance argument falls short:</h5>
+                        <ul class="list-disc list-inside text-body mb-4 space-y-1">
+                            <li>CRRT removes only small to medium-sized cytokines</li>
+                            <li>Doesn't correct production-clearance imbalance in overwhelming sepsis</li>
+                            <li>Blood clearance ≠ clinical benefit</li>
+                        </ul>
+                        
+                        <h5 class="font-semibold text-heading mb-2">Clinical risks of higher dose:</h5>
+                        <ul class="list-disc list-inside text-body space-y-1">
+                            <li>Hypophosphatemia, hypokalemia</li>
+                            <li>Negative nitrogen balance</li>
+                            <li>Drug underdosing</li>
+                            <li>Aggravation of metabolic alkalosis</li>
+                        </ul>
+                    </div>
+                `,
+                },
+                {
+                    title: "Q5: Nutrition Management in CRRT",
+                    content: `
+                    <div class="bg-blue-50 border-l-4 border-medical-blue p-4 mb-4">
+                        <h4 class="font-semibold text-heading mb-2">🍽️ Clinical Dilemma</h4>
+                        <p class="text-body">Patient on CRRT for 72+ hours with significant inflammation and 30% drop in prealbumin. Optimize nutrition approach?</p>
+                    </div>
+                    
+                    <div class="bg-green-50 border-l-4 border-green-500 p-4 mb-4">
+                        <h4 class="font-semibold text-heading mb-2">✅ Expert Answer</h4>
+                        <p class="text-body mb-4">Prioritize enteral protein delivery, escalating to 2.0-2.5 g/kg/day if tolerated.</p>
+                        
+                        <div class="bg-white rounded-lg p-4 mb-4">
+                            <strong class="text-heading">CRRT-specific nutrition tip:</strong> CRRT removes 10-15 g/day of amino acids. Prealbumin is a useful dynamic marker of nutrition and inflammation.
+                        </div>
+                        
+                        <h5 class="font-semibold text-heading mb-2">Why enteral first?</h5>
+                        <ul class="list-disc list-inside text-body mb-4 space-y-1">
+                            <li>Supports gut integrity and immune modulation</li>
+                            <li>Reduces infection risk compared to parenteral routes</li>
+                            <li>Allows stepwise titration based on tolerance</li>
+                        </ul>
+                        
+                        <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                            <strong class="text-heading">Practical Protocol:</strong><br>
+                            <span class="text-body">Start at 1.5 g/kg/day → titrate up to 2.5 g/kg/day as tolerated<br>
+                            If unable to meet >60% of needs via enteral route by day 4-5, consider IV amino acid support</span>
+                        </div>
+                    </div>
+                `,
+                },
+                {
+                    title: "Q6: CRRT vs SLED Transition",
+                    content: `
+                    <div class="bg-blue-50 border-l-4 border-medical-blue p-4 mb-4">
+                        <h4 class="font-semibold text-heading mb-2">🔄 Clinical Dilemma</h4>
+                        <p class="text-body">Patient now hemodynamically stable on minimal vasopressors. CRRT ongoing for 3 days. Consider switching to SLED?</p>
+                    </div>
+                    
+                    <div class="bg-green-50 border-l-4 border-green-500 p-4 mb-4">
+                        <h4 class="font-semibold text-heading mb-2">✅ Expert Answer</h4>
+                        <p class="text-body mb-4">Transitioning to SLED is appropriate and safe in hemodynamically stable patients. No RCT evidence that prolonged CRRT improves renal recovery.</p>
+                        
+                        <h5 class="font-semibold text-heading mb-2">Why consider transitioning?</h5>
+                        <ul class="list-disc list-inside text-body mb-4 space-y-1">
+                            <li>SLED is intermittent (6-12 hours) → fewer nutrient losses</li>
+                            <li>More flexible for mobilization and investigations</li>
+                            <li>Cost-effective and logistically easier</li>
+                        </ul>
+                        
+                        <div class="bg-white rounded-lg p-4 mb-4">
+                            <strong class="text-heading">Bedside considerations before switching:</strong><br>
+                            <span class="text-body">• Vasopressor dose ≤0.05 µg/kg/min<br>
+                            • Stable MAP for ≥12 hours<br>
+                            • No signs of fluid overload or unstable ICP</span>
+                        </div>
+                        
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                            <strong class="text-heading">Practical Tip:</strong> Start with 8-10 hr SLED runs, ultrafiltration at 100-200 mL/hr, monitor BP and electrolytes closely.
+                        </div>
+                    </div>
+                `,
+                },
+                {
+                    title: "Q7: Fluid Management During CRRT",
+                    content: `
+                    <div class="bg-blue-50 border-l-4 border-medical-blue p-4 mb-4">
+                        <h4 class="font-semibold text-heading mb-2">💧 Clinical Dilemma</h4>
+                        <p class="text-body">Managing ultrafiltration goals in CRRT patient. Can dynamic indices like SVV and PPV validly guide fluid removal?</p>
+                    </div>
+                    
+                    <div class="bg-green-50 border-l-4 border-green-500 p-4 mb-4">
+                        <h4 class="font-semibold text-heading mb-2">✅ Expert Answer</h4>
+                        <p class="text-body mb-4">SVV and PPV are unreliable in CRRT patients due to extracorporeal circuit effects.</p>
+                        
+                        <h5 class="font-semibold text-heading mb-2">Why unreliable?</h5>
+                        <ul class="list-disc list-inside text-body mb-4 space-y-1">
+                            <li>Extracorporeal circuit alters preload and afterload</li>
+                            <li>CRRT may cause dampening of arterial waveforms</li>
+                            <li>Mechanical ventilation settings further confound readings</li>
+                        </ul>
+                        
+                        <div class="bg-white rounded-lg p-4 mb-4">
+                            <strong class="text-heading">Preferred multimodal approach:</strong><br>
+                            <span class="text-body">• Passive Leg Raise (PLR) + real-time cardiac output monitoring<br>
+                            • Lung ultrasound for extravascular lung water<br>
+                            • Focused echocardiography for IVC variability<br>
+                            • Trend net fluid balance, urine output, weight, lactate</span>
+                        </div>
+                        
+                        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                            <strong class="text-heading">If using dynamic indices, ensure:</strong> Full mechanical ventilation with fixed tidal volume ≥8 mL/kg, no spontaneous breathing, stable rhythm. Still validate against clinical context.
+                        </div>
+                    </div>
+                `,
+                },
+                {
+                    title: "Q8: Regional Citrate Anticoagulation Management",
+                    content: `
+                    <div class="bg-blue-50 border-l-4 border-medical-blue p-4 mb-4">
+                        <h4 class="font-semibold text-heading mb-2">🩸 Clinical Dilemma</h4>
+                        <p class="text-body">Patient on RCA for 72 hours. ABG shows alkalosis (pH 7.55, HCO₃⁻ 34 mmol/L) and iCa 0.9 mmol/L despite escalated calcium infusion.</p>
+                    </div>
+                    
+                    <div class="bg-green-50 border-l-4 border-green-500 p-4 mb-4">
+                        <h4 class="font-semibold text-heading mb-2">✅ Expert Answer</h4>
+                        <p class="text-body mb-4">This indicates classic citrate-related triad: metabolic alkalosis, low ionized calcium, escalating calcium requirements.</p>
+                        
+                        <h5 class="font-semibold text-heading mb-2">Management Strategy:</h5>
+                        <ol class="list-decimal list-inside text-body mb-4 space-y-2">
+                            <li>Reduce citrate rate or switch to lower-concentration citrate solution</li>
+                            <li>Titrate calcium gluconate infusion to maintain iCa >1.0 mmol/L</li>
+                            <li>Switch to alternative anticoagulant if severe alkalosis persists</li>
+                        </ol>
+                        
+                        <div class="bg-white rounded-lg p-4 mb-4">
+                            <strong class="text-heading">Bedside Clue:</strong> Check total calcium to ionized calcium ratio. >2.5 suggests citrate accumulation, especially with liver dysfunction or shock.
+                        </div>
+                        
+                        <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+                            <strong class="text-heading">Monitoring Tips:</strong><br>
+                            <span class="text-body">• ABG and iCa every 6-12 hours<br>
+                            • Watch for bradycardia, tetany, hypotension<br>
+                            • Track calcium infusion rates</span>
+                        </div>
+                    </div>
+                `,
+                },
+            ];
+
+            function updateProgress() {
+                const phases = {
+                    welcome: { step: 1, width: 25 },
+                    pretest: { step: 2, width: 50 },
+                    expert: { step: 3, width: 75 },
+                    posttest: { step: 4, width: 75 },
+                    results: { step: 4, width: 100 },
+                };
+
+                const current = phases[currentPhase];
+                document.getElementById("progressText").textContent =
+                    `Step ${current.step} of 4`;
+                document.getElementById("progressBar").style.width =
+                    current.width + "%";
+            }
+
+            function showScreen(screenId) {
+                document
+                    .querySelectorAll(".screen-transition")
+                    .forEach((screen) => {
+                        screen.classList.add("hidden");
+                    });
+                document.getElementById(screenId).classList.remove("hidden");
+                document
+                    .getElementById(screenId)
+                    .classList.add("animate-fade-in");
+            }
+
+            function startPreTest() {
+                currentPhase = "pretest";
+                updateProgress();
+                showScreen("preTestScreen");
+                loadQuestion(0);
+            }
+
+            function loadQuestion(index) {
+                const question = questions[index];
+                const container = document.getElementById("questionContainer");
+
+                container.innerHTML = `
+                <div class="animate-slide-up">
+                    <h3 class="text-xl font-semibold text-heading mb-6 leading-relaxed">${question.question}</h3>
+                    <div class="space-y-4">
+                        ${question.options
+                            .map(
+                                (option, i) => `
+                            <label class="flex items-start p-4 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100 transition-all duration-200 border-2 border-transparent hover:border-medical-blue-light">
+                                <input type="radio" name="answer" value="${i}" class="mt-1 mr-4 text-medical-blue" ${preTestAnswers[question.id] === i ? "checked" : ""}>
+                                <span class="text-body flex-1">${option}</span>
+                            </label>
+                        `,
+                            )
+                            .join("")}
+                    </div>
+                </div>
+            `;
+
+                document.getElementById("questionCounter").textContent =
+                    `Question ${index + 1} of ${questions.length}`;
+                document.getElementById("prevBtn").disabled = index === 0;
+                document.getElementById("nextBtn").textContent =
+                    index === questions.length - 1
+                        ? "View Expert Analysis →"
+                        : "Next Question →";
+
+                // Add event listeners for radio buttons
+                document
+                    .querySelectorAll('input[name="answer"]')
+                    .forEach((radio) => {
+                        radio.addEventListener("change", () => {
+                            preTestAnswers[question.id] = parseInt(radio.value);
+                        });
+                    });
+            }
+
+            function nextQuestion() {
+                if (currentQuestion < questions.length - 1) {
+                    currentQuestion++;
+                    loadQuestion(currentQuestion);
+                } else {
+                    startExpertReview();
+                }
+            }
+
+            function prevQuestion() {
+                if (currentQuestion > 0) {
+                    currentQuestion--;
+                    loadQuestion(currentQuestion);
+                }
+            }
+
+            function startExpertReview() {
+                currentPhase = "expert";
+                updateProgress();
+                showScreen("expertScreen");
+                loadExpertContent();
+            }
+
+            function loadExpertContent() {
+                const container = document.getElementById("expertContent");
+                let content = "";
+
+                expertContent.forEach((expert, index) => {
+                    content += `
+                    <div class="card-modern animate-slide-up" style="animation-delay: ${index * 0.1}s">
+                        <h3 class="text-xl font-bold text-heading mb-4">${expert.title}</h3>
+                        ${expert.content}
+                    </div>
+                `;
+                });
+
+                container.innerHTML = content;
+            }
+
+            function startPostTest() {
+                currentPhase = "posttest";
+                updateProgress();
+                currentQuestion = 0;
+                showScreen("postTestScreen");
+                loadPostQuestion(0);
+            }
+
+            function loadPostQuestion(index) {
+                const question = questions[index];
+                const container = document.getElementById(
+                    "postQuestionContainer",
+                );
+
+                container.innerHTML = `
+                <div class="animate-slide-up">
+                    <h3 class="text-xl font-semibold text-heading mb-6 leading-relaxed">${question.question}</h3>
+                    <div class="space-y-4">
+                        ${question.options
+                            .map(
+                                (option, i) => `
+                            <label class="flex items-start p-4 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100 transition-all duration-200 border-2 border-transparent hover:border-medical-blue-light">
+                                <input type="radio" name="postAnswer" value="${i}" class="mt-1 mr-4 text-medical-blue" ${postTestAnswers[question.id] === i ? "checked" : ""}>
+                                <span class="text-body flex-1">${option}</span>
+                            </label>
+                        `,
+                            )
+                            .join("")}
+                    </div>
+                </div>
+            `;
+
+                document.getElementById("postQuestionCounter").textContent =
+                    `Question ${index + 1} of ${questions.length}`;
+                document.getElementById("postPrevBtn").disabled = index === 0;
+                document.getElementById("postNextBtn").textContent =
+                    index === questions.length - 1
+                        ? "View Results →"
+                        : "Next Question →";
+
+                // Add event listeners
+                document
+                    .querySelectorAll('input[name="postAnswer"]')
+                    .forEach((radio) => {
+                        radio.addEventListener("change", () => {
+                            postTestAnswers[question.id] = parseInt(
+                                radio.value,
+                            );
+                        });
+                    });
+            }
+
+            function nextPostQuestion() {
+                if (currentQuestion < questions.length - 1) {
+                    currentQuestion++;
+                    loadPostQuestion(currentQuestion);
+                } else {
+                    showResults();
+                }
+            }
+
+            function prevPostQuestion() {
+                if (currentQuestion > 0) {
+                    currentQuestion--;
+                    loadPostQuestion(currentQuestion);
+                }
+            }
+
+            function showResults() {
+                currentPhase = "results";
+                updateProgress();
+                showScreen("resultsScreen");
+
+                // Calculate scores
+                let preTestScore = 0;
+                let postTestScore = 0;
+
+                questions.forEach((q) => {
+                    if (preTestAnswers[q.id] === q.correct) preTestScore++;
+                    if (postTestAnswers[q.id] === q.correct) postTestScore++;
+                });
+
+                const improvement = postTestScore - preTestScore;
+                const prePercentage = Math.round(
+                    (preTestScore / questions.length) * 100,
+                );
+                const postPercentage = Math.round(
+                    (postTestScore / questions.length) * 100,
+                );
+
+                let resultMessage = "";
+                let resultIcon = "";
+
+                if (improvement > 0) {
+                    resultMessage = `🎉 Outstanding! You improved by ${improvement} question(s)!`;
+                    resultIcon = "https://undraw.co/api/custom?color=22c55e";
+                } else if (improvement === 0) {
+                    resultMessage = `👏 Consistent performance! You maintained your knowledge level.`;
+                    resultIcon = "";
+                } else {
+                    resultMessage = `📚 Great learning opportunity! The expert review provided valuable insights.`;
+                    resultIcon = "https://undraw.co/api/custom?color=f59e0b";
+                }
+
+                document.getElementById("resultsContent").innerHTML = `
+                <div class="mb-6">
+                    <img src="${resultIcon}" alt="Results" class="w-32 h-auto mx-auto mb-4">
+                    <div class="text-lg font-medium text-heading mb-6">${resultMessage}</div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-medical-blue-light rounded-xl p-6">
+                        <h3 class="text-lg font-bold text-heading mb-2">Pre-Assessment</h3>
+                        <div class="text-4xl font-bold text-medical-blue mb-2">${preTestScore}/${questions.length}</div>
+                        <div class="text-gray-600">${prePercentage}% Correct</div>
+                    </div>
+                    <div class="bg-green-100 rounded-xl p-6">
+                        <h3 class="text-lg font-bold text-heading mb-2">Post-Assessment</h3>
+                        <div class="text-4xl font-bold text-green-600 mb-2">${postTestScore}/${questions.length}</div>
+                        <div class="text-gray-600">${postPercentage}% Correct</div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-xl p-6 text-left">
+                    <h3 class="text-lg font-bold text-heading mb-4">Key Learning Points</h3>
+                    <ul class="space-y-3 text-body">
+                        <li class="flex items-start">
+                            <span class="bg-medical-blue text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5">1</span>
+                            CRRT requires careful balance of benefits vs. dialy-trauma
+                        </li>
+                        <li class="flex items-start">
+                            <span class="bg-medical-blue text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5">2</span>
+                            Continuous therapies can lead to significant nutrient losses
+                        </li>
+                        <li class="flex items-start">
+                            <span class="bg-medical-blue text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5">3</span>
+                            Evidence-based protocols improve patient outcomes
+                        </li>
+                        <li class="flex items-start">
+                            <span class="bg-medical-blue text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5">4</span>
+                            Monitoring and prevention strategies are crucial
+                        </li>
+                    </ul>
+                </div>
+            `;
+            }
+
+            function restartJourney() {
+                currentPhase = "welcome";
+                currentQuestion = 0;
+                preTestAnswers = {};
+                postTestAnswers = {};
+                updateProgress();
+                showScreen("welcomeScreen");
+            }
+
+            // Initialize the application
+            updateProgress();
+        </script>
+    </body>
+</html>

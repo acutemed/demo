@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDIC Plus - App Wireframes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+        
+        .wireframe-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .wireframe-section {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .wireframe-header {
+            background: #2563eb;
+            color: white;
+            padding: 16px 24px;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .wireframe-content {
+            padding: 24px;
+        }
+        
+        /* Navigation Styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2563eb;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+        
+        .nav-link {
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        
+        .nav-link:hover {
+            background: #f1f5f9;
+            color: #2563eb;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+        
+        .btn-secondary {
+            background: #f1f5f9;
+            color: #475569;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .btn-secondary:hover {
+            background: #e2e8f0;
+        }
+        
+        /* Grid Layouts */
+        .grid {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+        
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+        
+        .grid-4 {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+        
+        /* Card Styles */
+        .card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+            transition: all 0.2s;
+        }
+        
+        .card-header {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #1e293b;
+        }
+        
+        .card-content {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 24px;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 16px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            color: #64748b;
+            margin-bottom: 32px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #374151;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        
+        /* Dashboard Sidebar */
+        .dashboard-layout {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            min-height: 100vh;
+            gap: 0;
+        }
+        
+        .sidebar {
+            background: #ffffff;
+            border-right: 1px solid #e2e8f0;
+            padding: 24px 0;
+        }
+        
+        .sidebar-menu {
+            list-style: none;
+            padding: 0 16px;
+        }
+        
+        .sidebar-item {
+            margin-bottom: 8px;
+        }
+        
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            color: #64748b;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        
+        .sidebar-link:hover,
+        .sidebar-link.active {
+            background: #f1f5f9;
+            color: #2563eb;
+        }
+        
+        .main-content {
+            background: #f8fafc;
+            padding: 24px;
+        }
+        
+        /* Progress Bar */
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: #2563eb;
+            transition: width 0.3s ease;
+        }
+        
+        /* Question Styles */
+        .question-container {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .question-text {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            color: #1e293b;
+        }
+        
+        .answer-option {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            margin-bottom: 8px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .answer-option:hover {
+            background: #f1f5f9;
+            border-color: #2563eb;
+        }
+        
+        .answer-option input {
+            margin-right: 12px;
+        }
+        
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: #2563eb;
+            margin-bottom: 8px;
+        }
+        
+        .stat-label {
+            color: #64748b;
+            font-size: 14px;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .dashboard-layout {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                display: none;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* Custom Subject Colors */
+        .subject-cardiology { border-left: 4px solid #ef4444; }
+        .subject-nephrology { border-left: 4px solid #3b82f6; }
+        .subject-gi { border-left: 4px solid #10b981; }
+        .subject-neurology { border-left: 4px solid #8b5cf6; }
+        .subject-neurosurgery { border-left: 4px solid #f59e0b; }
+        .subject-ventilation { border-left: 4px solid #06b6d4; }
+        .subject-circulatory { border-left: 4px solid #ec4899; }
+        .subject-nutrition { border-left: 4px solid #84cc16; }
+        .subject-ethics { border-left: 4px solid #64748b; }
+        .subject-periop { border-left: 4px solid #dc2626; }
+        .subject-procedures { border-left: 4px solid #7c3aed; }
+        .subject-respiratory { border-left: 4px solid #059669; }
+        .subject-endoflife { border-left: 4px solid #6b7280; }
+        .subject-safety { border-left: 4px solid #d97706; }
+        
+        .tab-navigation {
+            display: flex;
+            border-bottom: 1px solid #e2e8f0;
+            margin-bottom: 24px;
+        }
+        
+        .tab-item {
+            padding: 12px 24px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            color: #64748b;
+            font-weight: 500;
+        }
+        
+        .tab-item.active {
+            color: #2563eb;
+            border-bottom-color: #2563eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="wireframe-container">
+        
+        <!-- 1. HOME PAGE -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">1. Home Page - edicplus.com</div>
+            <div class="wireframe-content">
+                <!-- Navigation -->
+                <div class="navbar">
+                    <div class="logo">EDIC Plus</div>
+                    <div class="nav-links">
+                        <a href="#" class="nav-link">Features</a>
+                        <a href="#" class="nav-link">Pricing</a>
+                        <a href="#" class="nav-link">About</a>
+                        <a href="#" class="nav-link">Contact</a>
+                    </div>
+                    <div>
+                        <a href="#" class="btn btn-secondary">Login</a>
+                        <a href="#" class="btn btn-primary">Get Started</a>
+                    </div>
+                </div>
+                
+                <!-- Hero Section -->
+                <div class="hero">
+                    <h1>Master the EDIC Part 1 Exam</h1>
+                    <p>Comprehensive question banks, custom mock exams, and knowledge resources designed specifically for EDIC Part 1 preparation.</p>
+                    <div style="display: flex; gap: 16px; justify-content: center; margin-top: 32px;">
+                        <a href="#" class="btn btn-primary" style="font-size: 18px; padding: 16px 32px;">Start Free Trial</a>
+                        <a href="#" class="btn btn-secondary" style="font-size: 18px; padding: 16px 32px;">View Demo</a>
+                    </div>
+                </div>
+                
+                <!-- Features Grid -->
+                <div style="padding: 60px 24px;">
+                    <h2 style="text-align: center; margin-bottom: 40px; font-size: 36px; color: #1e293b;">Everything You Need for EDIC Success</h2>
+                    <div class="grid grid-3">
+                        <div class="card">
+                            <div class="card-header">14 Subject Question Banks</div>
+                            <div class="card-content">Comprehensive questions covering all EDIC Part 1 topics including Cardiology, Nephrology, Neurology, and more.</div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">Custom Mock Exams</div>
+                            <div class="card-content">Create personalized mock exams by selecting specific subjects and customizing time allocation.</div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">Knowledge Bank</div>
+                            <div class="card-content">High-yield notes and comprehensive study materials organized for maximum learning efficiency.</div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">Visual Deck</div>
+                            <div class="card-content">Interactive flashcards system designed specifically for EDIC concepts and quick revision.</div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">Detailed Analytics</div>
+                            <div class="card-content">Track your progress with comprehensive performance analytics and subject-wise breakdowns.</div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">Instant Access</div>
+                            <div class="card-content">Register, pay, and get immediate access to all features. No waiting for approval.</div>
+                        </div>
+                    </div>
+                </div>
+                
+
+            </div>
+        </div>
+        
+        <!-- 2. DASHBOARD -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">2. Dashboard</div>
+            <div class="wireframe-content">
+                <div class="dashboard-layout" style="height: 600px;">
+                    <!-- Sidebar -->
+                    <div class="sidebar">
+                        <div style="padding: 0 16px; margin-bottom: 24px;">
+                            <div class="logo">EDIC Plus</div>
+                        </div>
+                        <ul class="sidebar-menu">
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link active">📊 Dashboard</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">📚 Subject Exams</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">🎯 Custom Mock</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">📖 Knowledge Bank</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">🃏 Visual Deck</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">📈 Analytics</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">⚙️ Settings</a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Main Content -->
+                    <div class="main-content">
+                        <div style="margin-bottom: 24px;">
+                            <h1 style="font-size: 28px; color: #1e293b; margin-bottom: 8px;">Welcome back, Dr. Ajay</h1>
+                            <p style="color: #64748b;">Continue your EDIC Part 1 preparation journey</p>
+                        </div>
+                        
+                        <!-- Stats Cards -->
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-number">67%</div>
+                                <div class="stat-label">Overall Progress</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">142</div>
+                                <div class="stat-label">Questions Attempted</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">85%</div>
+                                <div class="stat-label">Average Score</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">28</div>
+                                <div class="stat-label">Study Days</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Quick Actions -->
+                        <div class="grid grid-2">
+                            <div class="card">
+                                <div class="card-header">Continue Learning</div>
+                                <div class="card-content">Pick up where you left off with Cardiology questions</div>
+                                <a href="#" class="btn btn-primary">Continue Quiz</a>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">Study Weak Areas</div>
+                                <div class="card-content">Focus on Neurology - your lowest performing subject</div>
+                                <a href="#" class="btn btn-secondary">Review Notes</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 3. SUBJECT EXAMS PAGE -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">3. Subject Exams Page</div>
+            <div class="wireframe-content">
+                <div class="dashboard-layout" style="height: 600px;">
+                    <div class="sidebar">
+                        <div style="padding: 0 16px; margin-bottom: 24px;">
+                            <div class="logo">EDIC Plus</div>
+                        </div>
+                        <ul class="sidebar-menu">
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">📊 Dashboard</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link active">📚 Subject Exams</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">🎯 Custom Mock</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">📖 Knowledge Bank</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">🃏 Visual Deck</a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="main-content">
+                        <h1 style="margin-bottom: 24px; color: #1e293b;">Subject Question Banks</h1>
+                        <p style="color: #64748b; margin-bottom: 32px;">Choose a subject to start practicing EDIC Part 1 questions</p>
+                        
+                        <div class="grid grid-2">
+                            <div class="card subject-cardiology">
+                                <div class="card-header"> Cardiology</div>
+                                <div class="card-content">
+                                    <div style="margin-bottom: 12px;">
+                                        <span style="color: #64748b;">Progress:</span>
+                                        <div class="progress-bar" style="margin-top: 4px;">
+                                            <div class="progress-fill" style="width: 75%;"></div>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; font-size: 14px; color: #64748b;">
+                                        <span>45/250 questions</span>
+                                        <span>82% avg score</span>
+                                    </div>
+                                </div>
+                                <a href="#" class="btn btn-primary">Continue</a>
+                            </div>
+                            
+                            <div class="card subject-nephrology">
+                                <div class="card-header"> Nephrology</div>
+                                <div class="card-content">
+                                    <div style="margin-bottom: 12px;">
+                                        <span style="color: #64748b;">Progress:</span>
+                                        <div class="progress-bar" style="margin-top: 4px;">
+                                            <div class="progress-fill" style="width: 40%;"></div>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; font-size: 14px; color: #64748b;">
+                                        <span>0/200 questions</span>
+                                        <span>78% avg score</span>
+                                    </div>
+                                </div>
+                                <a href="#" class="btn btn-primary">Start</a>
+                            </div>
+                            
+                            <div class="card subject-gi">
+                                <div class="card-header"> Gastrointestinal</div>
+                                <div class="card-content">
+                                    <div style="margin-bottom: 12px;">
+                                        <span style="color: #64748b;">Progress:</span>
+                                        <div class="progress-bar" style="margin-top: 4px;">
+                                            <div class="progress-fill" style="width: 60%;"></div>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; font-size: 14px; color: #64748b;">
+                                        <span>120/200 questions</span>
+                                        <span>85% avg score</span>
+                                    </div>
+                                </div>
+                                <a href="#" class="btn btn-primary">Continue</a>
+                            </div>
+                            
+                            <div class="card subject-neurology">
+                                <div class="card-header"> Neurology</div>
+                                <div class="card-content">
+                                    <div style="margin-bottom: 12px;">
+                                        <span style="color: #64748b;">Progress:</span>
+                                        <div class="progress-bar" style="margin-top: 4px;">
+                                            <div class="progress-fill" style="width: 25%;"></div>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; font-size: 14px; color: #64748b;">
+                                        <span>15/60 questions</span>
+                                        <span>72% avg score</span>
+                                    </div>
+                                </div>
+                                <a href="#" class="btn btn-primary">Continue</a>
+                            </div>
+                            
+                            <div class="card subject-neurosurgery">
+                                <div class="card-header"> Neurosurgery</div>
+                                <div class="card-content">
+                                    <div style="margin-bottom: 12px;">
+                                        <span style="color: #64748b;">Progress:</span>
+                                        <div class="progress-bar" style="margin-top: 4px;">
+                                            <div class="progress-fill" style="width: 0%;"></div>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; font-size: 14px; color: #64748b;">
+                                        <span>0/45 questions</span>
+                                        <span>-- avg score</span>
+                                    </div>
+                                </div>
+                                <a href="#" class="btn btn-secondary">Start</a>
+                            </div>
+                            
+                            <div class="card subject-ventilation">
+                                <div class="card-header"> Mechanical Ventilation</div>
+                                <div class="card-content">
+                                    <div style="margin-bottom: 12px;">
+                                        <span style="color: #64748b;">Progress:</span>
+                                        <div class="progress-bar" style="margin-top: 4px;">
+                                            <div class="progress-fill" style="width: 90%;"></div>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; font-size: 14px; color: #64748b;">
+                                        <span>54/60 questions</span>
+                                        <span>91% avg score</span>
+                                    </div>
+                                </div>
+                                <a href="#" class="btn btn-primary">Continue</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 4. CUSTOM MOCK EXAM PAGE -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">4. Custom Mock Exam Page</div>
+            <div class="wireframe-content">
+                <div class="dashboard-layout" style="height: 600px;">
+                    <div class="sidebar">
+                        <div style="padding: 0 16px; margin-bottom: 24px;">
+                            <div class="logo">EDIC Plus</div>
+                        </div>
+                        <ul class="sidebar-menu">
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">📊 Dashboard</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">📚 Subject Exams</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link active">🎯 Custom Mock</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">📖 Knowledge Bank</a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="main-content">
+                        <h1 style="margin-bottom: 16px; color: #1e293b;">Create Custom Mock Exam</h1>
+                        <p style="color: #64748b; margin-bottom: 32px;">Select subjects and customize your practice exam</p>
+                        
+                        <div class="grid grid-2">
+                            <div class="card">
+                                <div class="card-header">Select Subjects</div>
+                                <div style="max-height: 300px; overflow-y: auto;">
+                                    <div style="margin-bottom: 12px;">
+                                        <label style="display: flex; align-items: center; cursor: pointer;">
+                                            <input type="checkbox" checked style="margin-right: 12px;">
+                                            <span>Cardiology (60 questions)</span>
+                                        </label>
+                                    </div>
+                                    <div style="margin-bottom: 12px;">
+                                        <label style="display: flex; align-items: center; cursor: pointer;">
+                                            <input type="checkbox" checked style="margin-right: 12px;">
+                                            <span>Nephrology (50 questions)</span>
+                                        </label>
+                                    </div>
+                                    <div style="margin-bottom: 12px;">
+                                        <label style="display: flex; align-items: center; cursor: pointer;">
+                                            <input type="checkbox" style="margin-right: 12px;">
+                                            <span>Gastrointestinal (50 questions)</span>
+                                        </label>
+                                    </div>
+                                    <div style="margin-bottom: 12px;">
+                                        <label style="display: flex; align-items: center; cursor: pointer;">
+                                            <input type="checkbox" checked style="margin-right: 12px;">
+                                            <span>Neurology (60 questions)</span>
+                                        </label>
+                                    </div>
+                                    <div style="margin-bottom: 12px;">
+                                        <label style="display: flex; align-items: center; cursor: pointer;">
+                                            <input type="checkbox" style="margin-right: 12px;">
+                                            <span>Neurosurgery (45 questions)</span>
+                                        </label>
+                                    </div>
+                                    <div style="margin-bottom: 12px;">
+                                        <label style="display: flex; align-items: center; cursor: pointer;">
+                                            <input type="checkbox" style="margin-right: 12px;">
+                                            <span>Mechanical Ventilation (60 questions)</span>
+                                        </label>
+                                    </div>
+                                    <div style="margin-bottom: 12px;">
+                                        <label style="display: flex; align-items: center; cursor: pointer;">
+                                            <input type="checkbox" style="margin-right: 12px;">
+                                            <span>Mechanical Circulatory Support (40 questions)</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="card">
+                                <div class="card-header">Exam Configuration</div>
+                                <div class="form-group">
+                                    <label class="form-label">Time per Question (minutes)</label>
+                                    <select class="form-input">
+                                        <option value="1">1 minute (minimum)</option>
+                                        <option value="1.5" selected>1.5 minutes</option>
+                                        <option value="2">2 minutes</option>
+                                        <option value="2.5">2.5 minutes</option>
+                                        <option value="3">3 minutes</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">Questions per Subject</label>
+                                    <select class="form-input">
+                                        <option value="10">50 questions</option>
+                                        <option value="15" selected>100 questions</option>
+                                        <option value="20">150 questions</option>
+                                        <option value="all">All available</option>
+                                    </select>
+                                </div>
+                                
+                                <div style="background: #f8fafc; padding: 16px; border-radius: 6px; margin-bottom: 20px;">
+                                    <h4 style="margin-bottom: 8px; color: #1e293b;">Exam Summary</h4>
+                                    <div style="font-size: 14px; color: #64748b;">
+                                        <div>Selected Subjects: 3</div>
+                                        <div>Total Questions: 45</div>
+                                        <div>Estimated Time: 67.5 minutes</div>
+                                    </div>
+                                </div>
+                                
+                                <a href="#" class="btn btn-primary" style="width: 100%;">Start Mock Exam</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 5. QUIZ SESSION PAGE -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">5. Quiz Session Page</div>
+            <div class="wireframe-content">
+                <!-- Quiz Header -->
+                <div style="background: white; border-bottom: 1px solid #e2e8f0; padding: 16px 24px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h2 style="color: #1e293b; margin-bottom: 4px;">Cardiology Quiz</h2>
+                            <div style="color: #64748b; font-size: 14px;">Question 5 of 20</div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 24px;">
+                            <div style="background: #f8fafc; padding: 8px 16px; border-radius: 6px;">
+                                <span style="color: #64748b; font-size: 14px;">Time Remaining:</span>
+                                <span style="color: #2563eb; font-weight: 600; margin-left: 8px;">23:45</span>
+                            </div>
+                            <button class="btn btn-secondary">Save & Exit</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Progress Bar -->
+                <div style="background: white; padding: 16px 24px; border-bottom: 1px solid #e2e8f0;">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 25%;"></div>
+                    </div>
+                </div>
+                
+                <!-- Question Content -->
+                <div style="background: #f8fafc; padding: 24px;">
+                    <div style="max-width: 800px; margin: 0 auto;">
+                        <div class="question-container">
+                            <div class="question-text">
+                                A 65-year-old patient in the ICU develops acute onset chest pain and shortness of breath. ECG shows ST-elevation in leads II, III, and aVF. Which of the following is the most likely diagnosis?
+                            </div>
+                            
+                            <div style="margin-bottom: 24px;">
+                                <div class="answer-option">
+                                    <input type="radio" name="answer" id="a" />
+                                    <label for="a">Anterior myocardial infarction</label>
+                                </div>
+                                <div class="answer-option">
+                                    <input type="radio" name="answer" id="b" />
+                                    <label for="b">Inferior myocardial infarction</label>
+                                </div>
+                                <div class="answer-option">
+                                    <input type="radio" name="answer" id="c" />
+                                    <label for="c">Lateral myocardial infarction</label>
+                                </div>
+                                <div class="answer-option">
+                                    <input type="radio" name="answer" id="d" />
+                                    <label for="d">Posterior myocardial infarction</label>
+                                </div>
+                
+                            </div>
+                            
+                            <div style="display: flex; justify-content: space-between;">
+                                <button class="btn btn-secondary">← Previous</button>
+                                <div style="display: flex; gap: 12px;">
+                                    <button class="btn btn-secondary">Flag Question</button>
+                                    <button class="btn btn-primary">Next →</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Question Navigator -->
+                        <div class="card" style="margin-top: 20px;">
+                            <div class="card-header">Question Navigator</div>
+                            <div style="display: grid; grid-template-columns: repeat(10, 1fr); gap: 8px;">
+                                <div style="width: 32px; height: 32px; background: #2563eb; color: white; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 14px;">1</div>
+                                <div style="width: 32px; height: 32px; background: #10b981; color: white; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 14px;">2</div>
+                                <div style="width: 32px; height: 32px; background: #10b981; color: white; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 14px;">3</div>
+                                <div style="width: 32px; height: 32px; background: #10b981; color: white; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 14px;">4</div>
+                                <div style="width: 32px; height: 32px; background: #f59e0b; color: white; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 14px;">5</div>
+                                <div style="width: 32px; height: 32px; background: #e2e8f0; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 14px;">6</div>
+                                <div style="width: 32px; height: 32px; background: #e2e8f0; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 14px;">7</div>
+                                <div style="width: 32px; height: 32px; background: #e2e8f0; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 14px;">8</div>
+                                <div style="width: 32px; height: 32px; background: #e2e8f0; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 14px;">9</div>
+                                <div style="width: 32px; height: 32px; background: #e2e8f0; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 14px;">10</div>
+                            </div>
+                            <div style="margin-top: 12px; font-size: 12px; color: #64748b;">
+                                <span style="color: #2563eb;">■</span> Current &nbsp;
+                                <span style="color: #10b981;">■</span> Answered &nbsp;
+                                <span style="color: #f59e0b;">■</span> Flagged &nbsp;
+                                <span style="color: #e2e8f0;">■</span> Not visited
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 6. REVIEW PAGE -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">6. Quiz Review Page</div>
+            <div class="wireframe-content">
+                <div style="padding: 24px;">
+                    <!-- Review Header -->
+                    <div style="text-align: center; margin-bottom: 32px;">
+                        <h1 style="color: #1e293b; margin-bottom: 8px;">Quiz Review: Cardiology</h1>
+                        <p style="color: #64748b;">Review your answers and learn from detailed explanations</p>
+                    </div>
+                    
+                    <!-- Score Summary -->
+                    <div class="card" style="margin-bottom: 32px; text-align: center;">
+                        <div style="display: flex; justify-content: center; gap: 40px;">
+                            <div>
+                                <div style="font-size: 36px; font-weight: 700; color: #2563eb;">85%</div>
+                                <div style="color: #64748b;">Overall Score</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 36px; font-weight: 700; color: #10b981;">17/20</div>
+                                <div style="color: #64748b;">Correct Answers</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 36px; font-weight: 700; color: #64748b;">25:30</div>
+                                <div style="color: #64748b;">Time Taken</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Review Questions -->
+                    <div style="max-width: 800px; margin: 0 auto;">
+                        <div class="question-container" style="border-left: 4px solid #10b981;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                                <div style="font-size: 14px; color: #64748b;">Question 1 of 20</div>
+                                <div style="background: #10b981; color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;">CORRECT</div>
+                            </div>
+                            
+                            <div class="question-text">
+                                A 65-year-old patient in the ICU develops acute onset chest pain and shortness of breath. ECG shows ST-elevation in leads II, III, and aVF. Which of the following is the most likely diagnosis?
+                            </div>
+                            
+                            <div style="margin-bottom: 20px;">
+                                <div style="display: flex; align-items: center; padding: 8px 12px; margin-bottom: 8px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px;">
+                                    <span style="color: #166534; margin-right: 12px;">✓</span>
+                                    <span style="color: #166534;">B. Inferior myocardial infarction</span>
+                                    <span style="margin-left: auto; background: #22c55e; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px;">Your Answer</span>
+                                </div>
+                                <div style="padding: 8px 12px; color: #64748b; border-left: 3px solid #e2e8f0; margin-left: 24px;">
+                                    A. Anterior myocardial infarction
+                                </div>
+                                <div style="padding: 8px 12px; color: #64748b; border-left: 3px solid #e2e8f0; margin-left: 24px;">
+                                    C. Lateral myocardial infarction
+                                </div>
+                            </div>
+                            
+                            <div style="background: #f8fafc; padding: 16px; border-radius: 6px; margin-bottom: 16px;">
+                                <h4 style="color: #1e293b; margin-bottom: 8px;">Explanation</h4>
+                                <p style="color: #64748b; font-size: 14px; line-height: 1.6;">
+                                    ST-elevation in leads II, III, and aVF indicates an inferior myocardial infarction, typically caused by occlusion of the right coronary artery (RCA) or less commonly the left circumflex artery. This pattern is characteristic of inferior wall involvement.
+                                </p>
+                            </div>
+                            
+                            <div style="border-top: 1px solid #e2e8f0; padding-top: 16px;">
+                                <h4 style="color: #1e293b; margin-bottom: 12px;">Related Knowledge Bank Articles</h4>
+                                <div style="display: flex; gap: 12px;">
+                                    <a href="#" class="btn btn-secondary" style="font-size: 14px; padding: 8px 16px;">ECG Interpretation in MI</a>
+                                    <a href="#" class="btn btn-secondary" style="font-size: 14px; padding: 8px 16px;">Coronary Anatomy</a>
+                                    <a href="#" class="btn btn-secondary" style="font-size: 14px; padding: 8px 16px;">Acute Coronary Syndromes</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Incorrect Answer Example -->
+                 
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 7. KNOWLEDGE BANK -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">7. Knowledge Bank</div>
+            <div class="wireframe-content">
+                <div class="dashboard-layout" style="height: 600px;">
+                    <div class="sidebar">
+                        <div style="padding: 0 16px; margin-bottom: 24px;">
+                            <div class="logo">EDIC Plus</div>
+                        </div>
+                        <ul class="sidebar-menu">
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">📊 Dashboard</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">📚 Subject Exams</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">🎯 Custom Mock</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link active">📖 Knowledge Bank</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">🃏 Visual Deck</a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="main-content">
+                        <h1 style="margin-bottom: 16px; color: #1e293b;">Knowledge Bank</h1>
+                        <p style="color: #64748b; margin-bottom: 24px;">High-yield study materials organized for maximum learning efficiency</p>
+                        
+                        <!-- Tab Navigation -->
+                        <div class="tab-navigation">
+                            <div class="tab-item active">📚 Study Materials</div>
+                            <div class="tab-item">📝 My Notes</div>
+                        </div>
+                        
+                        <!-- Study Materials Tab -->
+                        <div class="grid grid-2">
+                            <div class="card subject-cardiology">
+                                <div class="card-header"> Cardiology Notes</div>
+                                <div class="card-content">
+                                    <ul style="color: #64748b; font-size: 14px; line-height: 1.8;">
+                                        <li>• ECG Interpretation & Arrhythmias</li>
+                                        <li>• Acute Coronary Syndromes</li>
+                                        <li>• Heart Failure Management</li>
+                                        <li>• Valvular Heart Disease</li>
+                                        <li>• Hemodynamic Monitoring</li>
+                                    </ul>
+                                </div>
+                                <a href="#" class="btn btn-primary">View Notes</a>
+                            </div>
+                            
+                            <div class="card subject-nephrology">
+                                <div class="card-header"> Nephrology Notes</div>
+                                <div class="card-content">
+                                    <ul style="color: #64748b; font-size: 14px; line-height: 1.8;">
+                                        <li>• Acute Kidney Injury</li>
+                                        <li>• Renal Replacement Therapy</li>
+                                        <li>• Fluid & Electrolyte Balance</li>
+                                        <li>• Acid-Base Disorders</li>
+                                        <li>• Chronic Kidney Disease</li>
+                                    </ul>
+                                </div>
+                                <a href="#" class="btn btn-primary">View Notes</a>
+                            </div>
+                            
+                            <div class="card subject-gi">
+                                <div class="card-header">🫄 GI & Nutrition Notes</div>
+                                <div class="card-content">
+                                    <ul style="color: #64748b; font-size: 14px; line-height: 1.8;">
+                                        <li>• GI Bleeding Management</li>
+                                        <li>• Nutritional Assessment</li>
+                                        <li>• Enteral vs Parenteral Nutrition</li>
+                                        <li>• Liver Dysfunction in ICU</li>
+                                        <li>• Stress Ulcer Prophylaxis</li>
+                                    </ul>
+                                </div>
+                                <a href="#" class="btn btn-primary">View Notes</a>
+                            </div>
+                            
+                            <div class="card subject-neurology">
+                                <div class="card-header"> Neurology Notes</div>
+                                <div class="card-content">
+                                    <ul style="color: #64748b; font-size: 14px; line-height: 1.8;">
+                                        <li>• Stroke & TIA Management</li>
+                                        <li>• Seizure Disorders</li>
+                                        <li>• Intracranial Pressure</li>
+                                        <li>• Coma & Altered Consciousness</li>
+                                        <li>• Neuromuscular Disorders</li>
+                                    </ul>
+                                </div>
+                                <a href="#" class="btn btn-primary">View Notes</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 8. VISUAL DECK -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">8. Visual Deck Flashcards</div>
+            <div class="wireframe-content">
+                <div class="dashboard-layout" style="height: 600px;">
+                    <div class="sidebar">
+                        <div style="padding: 0 16px; margin-bottom: 24px;">
+                            <div class="logo">EDIC Plus</div>
+                        </div>
+                        <ul class="sidebar-menu">
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">📊 Dashboard</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">📚 Subject Exams</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">🎯 Custom Mock</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">📖 Knowledge Bank</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link active">🃏 Visual Deck</a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="main-content">
+                        <h1 style="margin-bottom: 16px; color: #1e293b;">Visual Deck</h1>
+                        <p style="color: #64748b; margin-bottom: 32px;">Interactive flashcards for quick revision and concept reinforcement</p>
+                        
+                        <!-- Flashcard Interface -->
+                        <div style="max-width: 600px; margin: 0 auto;">
+                            <div style="text-align: center; margin-bottom: 24px;">
+                                <div style="color: #64748b; margin-bottom: 8px;">Cardiology Deck</div>
+                                <div style="color: #1e293b; font-size: 18px; font-weight: 600;">Card 15 of 120</div>
+                                <div class="progress-bar" style="margin-top: 8px;">
+                                    <div class="progress-fill" style="width: 12.5%;"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Flashcard -->
+                            <div style="background: white; border: 2px solid #e2e8f0; border-radius: 12px; padding: 40px; text-align: center; margin-bottom: 24px; min-height: 300px; display: flex; flex-direction: column; justify-content: center; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+                                <div style="font-size: 24px; font-weight: 600; color: #1e293b; margin-bottom: 16px;">
+                                    Identify this Ventilator Waveform
+                                </div>
+                                <div style="color: #64748b; font-size: 16px;">
+                                    Click to reveal answer
+                                </div>
+                            </div>
+                            
+                            <!-- Controls -->
+                            <div style="display: flex; justify-content: center; gap: 16px; margin-bottom: 24px;">
+                                <button class="btn btn-secondary">← Previous</button>
+                                <button class="btn btn-primary">Flip Card</button>
+                                <button class="btn btn-secondary">Next →</button>
+                            </div>
+                            
+                            <!-- Difficulty Rating -->
+                            <div style="text-align: center;">
+                                <div style="color: #64748b; margin-bottom: 12px;">How well did you know this?</div>
+                                <div style="display: flex; justify-content: center; gap: 12px;">
+                                    <button style="background: #ef4444; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer;">Difficult</button>
+                                    <button style="background: #f59e0b; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer;">Medium</button>
+                                    <button style="background: #10b981; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer;">Easy</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 9. EXAM READINESS ANALYSIS -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">9. Exam Readiness Analysis</div>
+            <div class="wireframe-content">
+                <div class="dashboard-layout" style="height: 600px;">
+                    <div class="sidebar">
+                        <div style="padding: 0 16px; margin-bottom: 24px;">
+                            <div class="logo">EDIC Plus</div>
+                        </div>
+                        <ul class="sidebar-menu">
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">📊 Dashboard</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">📚 Subject Exams</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">🎯 Custom Mock</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">📖 Knowledge Bank</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link active">📈 Analytics</a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="main-content">
+                        <h1 style="margin-bottom: 16px; color: #1e293b;">Exam Readiness Analysis</h1>
+                        <p style="color: #64748b; margin-bottom: 32px;">Comprehensive analysis of your EDIC Part 1 preparation progress</p>
+                        
+                        <!-- Overall Readiness -->
+                        <div class="card" style="margin-bottom: 32px; text-align: center;">
+                            <div style="margin-bottom: 20px;">
+                                <div style="font-size: 48px; font-weight: 700; color: #f59e0b; margin-bottom: 8px;">78%</div>
+                                <div style="font-size: 18px; color: #1e293b; font-weight: 600;">Exam Readiness Score</div>
+                                <div style="color: #64748b;">Based on performance across all subjects</div>
+                            </div>
+                            <div style="background: #f8fafc; padding: 16px; border-radius: 6px; margin-top: 20px;">
+                                <div style="color: #f59e0b; font-weight: 600; margin-bottom: 8px;">Recommendation</div>
+                                <div style="color: #64748b;">You're making good progress! Focus on Neurology and Respiratory to improve your overall score.</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Subject Performance -->
+                        <div class="grid grid-2">
+                            <div class="card">
+                                <div class="card-header">Subject Performance</div>
+                                <div style="space-y: 12px;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                        <span style="color: #64748b;">Mechanical Ventilation</span>
+                                        <span style="font-weight: 600; color: #10b981;">91%</span>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                        <span style="color: #64748b;">Gastrointestinal</span>
+                                        <span style="font-weight: 600; color: #10b981;">85%</span>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                        <span style="color: #64748b;">Cardiology</span>
+                                        <span style="font-weight: 600; color: #10b981;">82%</span>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                        <span style="color: #64748b;">Nephrology</span>
+                                        <span style="font-weight: 600; color: #f59e0b;">78%</span>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                        <span style="color: #64748b;">Neurology</span>
+                                        <span style="font-weight: 600; color: #ef4444;">65%</span>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                        <span style="color: #64748b;">Respiratory</span>
+                                        <span style="font-weight: 600; color: #ef4444;">62%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="card">
+                                <div class="card-header">Study Recommendations</div>
+                                <div style="space-y: 12px;">
+                                    <div style="background: #fef2f2; border: 1px solid #fecaca; padding: 12px; border-radius: 6px; margin-bottom: 12px;">
+                                        <div style="color: #dc2626; font-weight: 600; margin-bottom: 4px;">High Priority</div>
+                                        <div style="color: #64748b; font-size: 14px;">Focus on Respiratory & Neurology</div>
+                                    </div>
+                                    <div style="background: #fefbf2; border: 1px solid #fed7aa; padding: 12px; border-radius: 6px; margin-bottom: 12px;">
+                                        <div style="color: #d97706; font-weight: 600; margin-bottom: 4px;">Medium Priority</div>
+                                        <div style="color: #64748b; font-size: 14px;">Review Nephrology concepts</div>
+                                    </div>
+                                    <div style="background: #f0fdf4; border: 1px solid #bbf7d0; padding: 12px; border-radius: 6px;">
+                                        <div style="color: #16a34a; font-weight: 600; margin-bottom: 4px;">Maintain</div>
+                                        <div style="color: #64748b; font-size: 14px;">Keep up strong performance in other subjects</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 10. SUBJECT-WISE ANALYSIS -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">10. Subject-wise Analysis</div>
+            <div class="wireframe-content">
+                <div class="dashboard-layout" style="height: 600px;">
+                    <div class="sidebar">
+                        <div style="padding: 0 16px; margin-bottom: 24px;">
+                            <div class="logo">EDIC Plus</div>
+                        </div>
+                        <ul class="sidebar-menu">
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">📊 Dashboard</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">📚 Subject Exams</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">🎯 Custom Mock</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">📖 Knowledge Bank</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link active">📈 Analytics</a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="main-content">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                            <div>
+                                <h1 style="color: #1e293b; margin-bottom: 8px;">Cardiology Analysis</h1>
+                                <p style="color: #64748b;">Detailed performance breakdown for Cardiology</p>
+                            </div>
+                            <select style="padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 6px; background: white;">
+                                <option>Cardiology</option>
+                                <option>Nephrology</option>
+                                <option>Neurology</option>
+                                <option>GI & Nutrition</option>
+                                <option>Respiratory</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Subject Stats -->
+                        <div class="stats-grid" style="margin-bottom: 32px;">
+                            <div class="stat-card">
+                                <div class="stat-number">82%</div>
+                                <div class="stat-label">Average Score</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">45/60</div>
+                                <div class="stat-label">Questions Completed</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">37</div>
+                                <div class="stat-label">Correct Answers</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">1.8m</div>
+                                <div class="stat-label">Avg Time/Question</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Topic Breakdown -->
+                        <div class="grid grid-2">
+                            <div class="card">
+                                <div class="card-header">Topic Performance</div>
+                                <div>
+                                    <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #f1f5f9;">
+                                        <span style="color: #64748b;">ECG Interpretation</span>
+                                        <span style="font-weight: 600; color: #10b981;">95%</span>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #f1f5f9;">
+                                        <span style="color: #64748b;">Acute Coronary Syndromes</span>
+                                        <span style="font-weight: 600; color: #10b981;">88%</span>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #f1f5f9;">
+                                        <span style="color: #64748b;">Heart Failure</span>
+                                        <span style="font-weight: 600; color: #f59e0b;">75%</span>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #f1f5f9;">
+                                        <span style="color: #64748b;">Valvular Disease</span>
+                                        <span style="font-weight: 600; color: #ef4444;">65%</span>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; padding: 8px 0;">
+                                        <span style="color: #64748b;">Hemodynamics</span>
+                                        <span style="font-weight: 600; color: #ef4444;">62%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="card">
+                                <div class="card-header">Recent Activity</div>
+                                <div>
+                                    <div style="padding: 12px 0; border-bottom: 1px solid #f1f5f9;">
+                                        <div style="font-weight: 600; color: #1e293b; margin-bottom: 4px;">Heart Failure Quiz</div>
+                                        <div style="color: #64748b; font-size: 14px;">Score: 85% • 2 days ago</div>
+                                    </div>
+                                    <div style="padding: 12px 0; border-bottom: 1px solid #f1f5f9;">
+                                        <div style="font-weight: 600; color: #1e293b; margin-bottom: 4px;">ECG Practice</div>
+                                        <div style="color: #64748b; font-size: 14px;">Score: 92% • 4 days ago</div>
+                                    </div>
+                                    <div style="padding: 12px 0;">
+                                        <div style="font-weight: 600; color: #1e293b; margin-bottom: 4px;">Valvular Disease</div>
+                                        <div style="color: #64748b; font-size: 14px;">Score: 68% • 1 week ago</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
